@@ -1,0 +1,29 @@
+CHDIR, DIR = "/Users/Bell 1/GIT_REPOS/50 GeV Accelerator/MADX/Sequences/Full Sequences";
+CALL FILE = "ring 50 w fixed low beta 0.44 w QD1 v2.seq";
+
+beam, MASS=2.32283962,CHARGE=1, ENERGY=13.54435861,
+      EX= 3.96e-005, EY=  3.1e-005, SIGE=   0.00156;
+
+CHDIR, DIR = "/Users/Bell 1/GIT_REPOS/50 GeV Accelerator/MADX";
+
+USE, SEQUENCE = MACHINE;
+MATCH, SEQUENCE = MACHINE;
+
+CONSTRAINT, SEQUENCE=MACHINE, range=B1/B2,
+          BETX < 46.0, BETY < 46.0;
+
+GLOBAL, SEQUENCE=MACHINE, Q1 =25.80, Q2 = 28.80;
+
+vary,name=QF->K1, step=1.0e-6;
+vary,name=QD1->K1, step=1.0e-6;
+vary,name=QD->K1, step=1.0e-6;
+
+!vary,name=QF1->K1, step=1.0e-6;
+
+
+!JACOBIAN,calls=1000,tolerance=1.e-25;
+SIMPLEX,calls=3000,tolerance=1.e-21;
+!MIGRAD,calls=3000,tolerance=1.e-21;
+!LMDIF,calls=3000,tolerance=1.e-24;
+endmatch,knobfile='knobs.tfs';
+stop;

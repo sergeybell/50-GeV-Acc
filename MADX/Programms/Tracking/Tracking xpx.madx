@@ -1,0 +1,49 @@
+beam, MASS=0.9382796,CHARGE=1, ENERGY=25,
+      EX=2e-05, EY=2e-05, SIGE=0.001;
+
+CHDIR, DIR = "/Users/Bell 1/GIT_REPOS/50 GeV Accelerator/MADX/Sequences/Full Sequences";
+CALL FILE = "ring 50 w fixed low beta 0.44 w QD1 v2.seq";
+
+use, period=MACHINE;
+
+select, flag=makethin, class=sextupole, slice=1, thick=true;
+select, flag=makethin, class=QUADRUPOLE, slice=0, thick=true;
+MAKETHIN, SEQUENCE = MACHINE;
+use,PERIOD=MACHINE;
+
+CHDIR, DIR = "/Users/Bell 1/GIT_REPOS/50 GeV Accelerator/MADX/Programms/Plot";
+
+TRACK, DELTAP=0.000, FILE = tracking_temp_full, onetable = true;
+
+start, x=0.000, px=0.0, y=0.0, py=0.0;
+start, x=0.001, px=0.0, y=0.0, py=0.0;
+start, x=0.002, px=0.0, y=0.0, py=0.0;
+start, x=0.005, px=0.0, y=0.0, py=0.0;
+start, x=0.010, px=0.0, y=0.0, py=0.0;
+start, x=0.012, px=0.0, y=0.0, py=0.0;
+start, x=0.015, px=0.0, y=0.0, py=0.0;
+start, x=0.018, px=0.0, y=0.0, py=0.0;
+start, x=0.020, px=0.0, y=0.0, py=0.0;
+start, x=0.025, px=0.0, y=0.0, py=0.0;
+start, x=0.027, px=0.0, y=0.0, py=0.0;
+start, x=0.029, px=0.0, y=0.0, py=0.0;
+start, x=0.030, px=0.0, y=0.0, py=0.0;
+start, x=0.032, px=0.0, y=0.0, py=0.0;
+start, x=0.035, px=0.0, y=0.0, py=0.0;
+start, x=0.037, px=0.0, y=0.0, py=0.0;
+start, x=0.040, px=0.0, y=0.0, py=0.0;
+start, x=0.042, px=0.0, y=0.0, py=0.0;
+start, x=0.045, px=0.0, y=0.0, py=0.0;
+start, x=0.047, px=0.0, y=0.0, py=0.0;
+start, x=0.050, px=0.0, y=0.0, py=0.0;
+start, x=0.052, px=0.0, y=0.0, py=0.0;
+start, x=0.055, px=0.0, y=0.0, py=0.0;
+start, x=0.060, px=0.0, y=0.0, py=0.0;
+start, x=0.065, px=0.0, y=0.0, py=0.0;
+
+RUN, TURNS = 1000, ffile=1;
+ENDTRACK;
+
+TWISS;
+
+stop;

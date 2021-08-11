@@ -1,0 +1,17 @@
+CHDIR, DIR = "/Users/Bell 1/GIT_REPOS/50 GeV Accelerator/MADX/Sequences/Full Sequences";
+CALL FILE = "ring 50 w fixed low beta 0.44 w QD1 v2.seq";
+
+beam, MASS=0.9382796,CHARGE=1, ENERGY=50.9382796,
+      EX=2e-05, EY=2e-05, SIGE=0.001;
+
+USE, PERIOD = MACHINE;
+!select, flag=makethin, class=sextupole, slice=1;
+!select, flag=makethin, class=QUADRUPOLE, slice=0, thick=true;
+!MAKETHIN, SEQUENCE = MACHINE;
+USE, PERIOD = MACHINE;
+CHDIR, DIR = "/Users/Bell 1/GIT_REPOS/50 GeV Accelerator/MADX";
+
+twiss, x=0.000, file=tbl/twiss_temp_Arc.tbl;
+plot, TITLE = "1 Arc + 1 Straight", haxis=s, hmax = 2000, vaxis=betx,bety,colour=100, style=100,file=img/twiss_plot;
+plot, TITLE = "1 Arc + 1 Straight", haxis=s, hmax = 2000, vaxis=dx,dy,colour=100, style=100,file=img/twiss_plot_temp_Arc;
+stop;

@@ -1,0 +1,190 @@
+#Ring with three arcs. 
+#Each arc has 64 magnets, Field=1.6 Tesla 
+#Each arc consists of 8 superperiods and total tune of each arc is 6
+#-------MAIN parameters--------------------------------
+#massa of proton in [MeV]------------------------------
+$Mp=938.2796;  =>    938.2796
+#final kinetic energy of proton in ring in [MeV]-------
+$Wp=50000.;  =>       50000
+#gamma-------------------------------------------------
+$gamma=($Wp/$Mp)+1.;  =>  54.2890196
+#Full energy Ep=Mp*gamma-------------------------------
+$Ep=$Mp*$gamma;  =>  50938.2796
+#relative velocity-------------------------------------
+$beta=sqrt(1-1/($gamma*$gamma));  => 0.999830339
+# proton mass in  [kG] m_p-----------------------------
+$m_p=1.6726e-27;  => 1.6726e-027
+#el  charge in [C]-------------------------------------
+$Qp=1.6022e-19;  => 1.6022e-019
+#speed of ligt in [m/sec]------------------------------
+$c_light=$c*0.01;  =>   299792458
+#Rigidity of ring in [T*m]-----------------------------
+$BR=$m_p*$gamma*$c_light*$beta/$Qp;  =>   169.87692
+#Magnetic field in magnet in [Tesla]-------------------
+$B=1.6;  =>         1.6
+# radius of magnet curvature in [cm]--------------------
+$R=$BR/$B*100;  =>  10617.3075
+# Full length of all magnets 2pi*R in [cm]--------------
+$L_mags=2*$pi*$R;  =>  66710.5104
+#
+#=========ONE ARC STRUCTURE============================
+# 
+# cellB=QD B B QF1 QF1 B B QD - cell with magnets
+# cell0=QD 0 QF2 QF2 0 QD - cell without magnet
+# superperiod=cellB+cell0+cellB
+# arc=8*superperiods
+# number of magnets per superperiod
+$n_mag=8;  =>           8
+# number of superperiods per arc
+$n_super=8;  =>           8
+# number of arcs
+$n_arc=3;  =>           3
+# number of magnet on three arcs
+$N_mag=$n_mag*$n_super*$n_arc        ;  =>         192
+#Lengt of one magnet in [cm]
+$L_mag=$L_mags/$N_mag;  =>  347.450575
+# angle of bending per one magnet in [deg]------------
+$ang_B=$L_mag/($L_mags)*360;  =>       1.875
+# total angle of bending in the ring in [deg]---------
+$ang_ring=$ang_B*$N_mag;  =>         360
+#=====================================================
+
+
+
+
+#*******************************************************************************************
+OptiM
+Energy[MeV]=50000   Mass[MeV]=938.2796 
+Emittance: ex[cm]=0.002  ey[cm]=0.002  DP/P=0.001 
+Initial:	BetaX[cm]=818.241 	BetaY[cm]=4428.47 
+	AlfaX=-4.86807e-17 	AlfaY=4.35422e-16 
+	DispersX[cm]=0 	DispersY[cm]=0 
+	Dsp_PrimeX=-2.51458e-16 	DspPrimeY=0 
+	X[cm]=0.000    	Y[cm]=0.000    	Z[cm]=0.000    	S[cm]=0.000    
+	tetaX[deg]=0        	tetaY[deg]=0        
+#  Elements: O-free space, D-dipole, Q-quad, S-sextipole
+#  Elements: B-dipole with gradient
+begin lattice. Number of periods=1 
+
+#====================================ARCI=================================================================
+QDA1 OD1            BDA OD4 BDA           OD1   QFA1  QFA1   OD1            BDA OD4  BDA         OD1  QDA1 
+QDA1  ODS  Sd  ODS      ODR     ODS  Sf   ODS   QFA2  QFA2  ODS Sf  ODS      ODR    ODS  Sd   ODS   QDA1
+QDA1 OD1            BDA  OD4 BDA          OD1   QFA1  QFA1   OD1            BDA OD4  BDA         OD1  QDA1
+
+QDA1 OD1            BDA OD4 BDA           OD1   QFA1  QFA1   OD1            BDA OD4  BDA         OD1  QDA1 
+QDA1  ODS  Sd  ODS      ODR     ODS  Sf   ODS   QFA2  QFA2  ODS Sf  ODS      ODR    ODS  Sd   ODS   QDA1
+QDA1 OD1            BDA  OD4 BDA          OD1   QFA1  QFA1   OD1            BDA OD4  BDA         OD1  QDA1
+
+
+QDA1 OD1            BDA OD4 BDA           OD1   QFA1  QFA1   OD1            BDA OD4  BDA         OD1  QDA1 
+QDA1  ODS  Sd  ODS      ODR     ODS  Sf   ODS   QFA2  QFA2  ODS Sf  ODS      ODR    ODS  Sd   ODS   QDA1
+QDA1 OD1            BDA  OD4 BDA          OD1   QFA1  QFA1   OD1            BDA OD4  BDA         OD1  QDA1
+
+
+QDA1 OD1            BDA OD4 BDA           OD1   QFA1  QFA1   OD1            BDA OD4  BDA         OD1  QDA1 
+QDA1  ODS  Sd  ODS      ODR     ODS  Sf   ODS   QFA2  QFA2  ODS Sf  ODS      ODR    ODS  Sd   ODS   QDA1
+QDA1 OD1            BDA  OD4 BDA          OD1   QFA1  QFA1   OD1            BDA OD4  BDA         OD1  QDA1
+
+
+QDA1 OD1            BDA OD4 BDA           OD1   QFA1  QFA1   OD1            BDA OD4  BDA         OD1  QDA1 
+QDA1  ODS  Sd  ODS      ODR     ODS  Sf   ODS   QFA2  QFA2  ODS Sf  ODS      ODR    ODS  Sd   ODS   QDA1
+QDA1 OD1            BDA  OD4 BDA          OD1   QFA1  QFA1   OD1            BDA OD4  BDA         OD1  QDA1
+
+
+QDA1 OD1            BDA OD4 BDA           OD1   QFA1  QFA1   OD1            BDA OD4  BDA         OD1  QDA1 
+QDA1  ODS  Sd  ODS      ODR     ODS  Sf   ODS   QFA2  QFA2  ODS Sf  ODS      ODR    ODS  Sd   ODS   QDA1
+QDA1 OD1            BDA  OD4 BDA          OD1   QFA1  QFA1   OD1            BDA OD4  BDA         OD1  QDA1
+
+
+QDA1 OD1            BDA OD4 BDA           OD1   QFA1  QFA1   OD1            BDA OD4  BDA         OD1  QDA1 
+QDA1  ODS  Sd  ODS      ODR     ODS  Sf   ODS   QFA2  QFA2  ODS Sf  ODS      ODR    ODS  Sd   ODS   QDA1
+QDA1 OD1            BDA  OD4 BDA          OD1   QFA1  QFA1   OD1            BDA OD4  BDA         OD1  QDA1
+
+
+QDA1 OD1            BDA OD4 BDA           OD1   QFA1  QFA1   OD1            BDA OD4  BDA         OD1  QDA1 
+QDA1  ODS  Sd  ODS      ODR     ODS  Sf   ODS   QFA2  QFA2  ODS Sf  ODS      ODR    ODS  Sd   ODS   QDA1
+QDA1 OD1            BDA  OD4 BDA          OD1   QFA1  QFA1   OD1            BDA OD4  BDA         OD1  QDA1
+
+#===============================STRAIGT SECTION I=====================================================
+
+QD OD1         OBD OD4 OBD          OD1   QF  QF   OD1           OBD OD4  OBD        OD1  QD
+QD OD1           OBD OD4 OBD          OD1   QF  QF   OD1           OBD OD4  OBD        OD1  QD
+QD OD1           OBD OD4 OBD          OD1   QF  QF   OD1           OBD OD4  OBD        OD1  QD
+
+QD OD1           OBD OD4 OBD          OD1   QF  QF   OD1           OBD OD4  OBD        OD1  QD
+QD OD1           OBD OD4 OBD          OD1   QF  QF   OD1           OBD OD4  OBD        OD1  QD
+QD OD1           OBD OD4 OBD          OD1   QF  QF   OD1           OBD OD4  OBD        OD1  QD
+
+QD OD1           OBD OD4 OBD          OD1   QF  QF   OD1           OBD OD4  OBD        OD1  QD
+QD OD1           OBD OD4 OBD          OD1   QF  QF   OD1           OBD OD4  OBD        OD1  QD
+QD OD1           OBD OD4 OBD          OD1   QF  QF   OD1           OBD OD4  OBD        OD1  QD
+
+QD OD1           OBD OD4 OBD          OD1   QF  QF   OD1           OBD OD4  OBD        OD1  QD
+QD OD1           OBD OD4 OBD          OD1   QF  QF   OD1           OBD OD4  OBD        OD1  QD
+QD OD1           OBD OD4 OBD          OD1   QF  QF   OD1           OBD OD4  OBD        OD1  QD
+#=====================================================================================================
+
+end lattice
+begin list
+#===================================ARC===================================================
+OD1 	L[cm]=70       
+ODR 	L[cm]=220      
+OD4 	L[cm]=70       
+ODS 	L[cm]=40       
+#-------------------------------------------------------------
+QFA1 	L[cm]=76         	G[kG/cm]=1.61    	Tilt[deg]=0
+QFA2 	L[cm]=76         	G[kG/cm]=2.5486  	Tilt[deg]=0
+#-------------------------------------------------------------- 
+QDA1 	L[cm]=76         	G[kG/cm]=-1.84578 	Tilt[deg]=0
+
+#--------------------------------------------------------------
+BDA 	L[cm]=347.45058   	B[kG]=16         	G[kG/cm]=0        	Tilt[deg]=0
+
+#--------------------------------------------------------------
+Sf 	L[cm]=50         	S[kG/cm/cm)]=0   Tilt[deg]=0
+Sd 	L[cm]=50         	S[kG/cm/cm)]=0   Tilt[deg]=0
+#================================Straight Section========================================      
+OBD 	L[cm]=325.25   
+OD4 	L[cm]=70       
+ODS 	L[cm]=40       
+#-------------------------------------------------------------
+QF 	L[cm]=76         	G[kG/cm]=1.404   	Tilt[deg]=0
+
+#-------------------------------------------------------------- 
+QD 	L[cm]=76         	G[kG/cm]=-1.114  	Tilt[deg]=0
+
+#--------------------------------------------------------------
+
+end list of elements
+
+
+
+BetaFitBlock  dL[cm]=0.001  dB[kGs]=0.001  dG[kGs/cm]=0.0001
+Maximum Betas[cm]: Beta_X=500000 	dBeta_X=-1 	Beta_Y=500000 	dBeta_Y=-1 
+#Fitting parametrs at the end of the lattice
+Beta_X[cm]=528.05 	dBeta_X[cm]=0.01 	Alfa_X=0  	dAlfa_X=0.001
+Beta_Y[cm]=70.154 	dBeta_Y[cm]=0.01 	Alfa_Y=0  	dAlfa_Y=0.001 
+Disp_X[cm]=25.0747 	dDisp_X[cm]=0.01 	D_prime_X=0 	dD_prime_X=0.001 
+Disp_Y[cm]=0 	dDisp_Y[cm]=0.011 	D_prime_Y=0 	dD_prime_Y=0.001 
+Qx=0.375 	dQx=0.001 
+Qy=0.25 	dQy=0.001 
+#
+#Groups of elements below. Each group has to be located on one line
+#begining from the letter describing the changable parameter such as: L:, Q: 
+G: QFA
+G: BDA
+L: OD2
+L: OD1
+EndBetaFitBlock
+
+4D_BetaBlock
+	Beta_X_1[cm]=100. 	Beta_X_2[cm]=0.
+	Alfa_X_1=.1      	Alfa_X_2=0.
+	Beta_Y_1[cm]=0.  	Beta_Y_2[cm]=100.
+	Alfa_Y_1=0.      	Alfa_Y_2=0.1 
+	Teta_1[deg]=0.   	Teta_2[deg]=0    U=0
+	Emit1[cm]=1.e-5. 	Emit2[cm]=1.e-5
+	DispX[cm]=0.     	DispY[cm]=0
+	DispXpr[cm]=0.   	DispYpr[cm]=0
+End4DBetaBlock
+
